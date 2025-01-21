@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Jamming-App/static/css/main.2672f8b6.css",
+    "main.js": "/Jamming-App/static/js/main.b3f4b57c.js",
+    "index.html": "/Jamming-App/index.html",
+    "main.2672f8b6.css.map": "/Jamming-App/static/css/main.2672f8b6.css.map",
+    "main.b3f4b57c.js.map": "/Jamming-App/static/js/main.b3f4b57c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2672f8b6.css",
+    "static/js/main.b3f4b57c.js"
+  ]
+}
