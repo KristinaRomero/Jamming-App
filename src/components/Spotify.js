@@ -1,6 +1,7 @@
 const clientId = "edd375f180f04080aac77d279a03169a"; // Replace with your actual Client ID
-const redirectUri = "http://localhost:3000/callback"; // Replace with your Redirect URI
+const redirectUri = "https://KristinaRomero.github.io/Jamming-App/callback"; // Update to GitHub Pages URL
 let accessToken;
+
 
 const Spotify = {
   getAccessToken() {
