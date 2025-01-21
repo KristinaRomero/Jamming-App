@@ -1,0 +1,188 @@
+/* General app styling */
+.App {
+  background-color: #ffe4f5; /* Pastel pink background */
+  min-height: 100vh; /* Ensures the background covers the entire viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', Arial, sans-serif; /* Modern and clean font */
+  color: #333;
+}
+
+
+/* Button styles */
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff; /* White text */
+  background-color: #a1c4fd; /* Pastel blue button */
+  border: 2px solid #c9eaf3; /* Lighter blue border */
+  border-radius: 10px; /* Rounded corners for a soft look */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #c9eaf3; /* Lighter blue on hover */
+  border-color: #a1c4fd; /* Swap border and background colors for hover effect */
+}
+
+/* Header styling */
+.App-header {
+  background-color: #ffadd8; /* Pastel pink header */
+  height: 100px; /* Adjust height to make it less tall */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(12px + 2vmin);
+  color: #ffffff;
+  width: 100%; /* Stretch to full width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add space below the header */
+}
+
+
+/* Input field styles */
+input {
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #a1c4fd; /* Blue border on focus */
+}
+
+/* Section styling */
+.component-section {
+  background-color: #ffffff; /* White background for sections */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  width: 300px; /* Set consistent section width */
+}
+
+/* Layout */
+.App-content {
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly with space in between */
+  align-items: flex-start; /* Align items to the top */
+  flex-wrap: wrap; /* Allow items to wrap if the screen width is too small */
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px; /* Limit the maximum width */
+  margin-top: 20px; /* Add some spacing below the header */
+}
+
+
+/* Search Results and Playlist Styling */
+.SearchResults,
+.Playlist {
+    background-color: #fdf7fb; /* Subtle pastel pink */
+    padding: 20px;
+    border: 1px solid #ffe4f5; /* Soft border */
+    border-radius: 12px;
+    width: 30%; /* Set a fixed width as a percentage of the parent */
+    min-width: 300px; /* Ensure they don’t get too small on narrow screens */
+}
+
+@media (max-width: 768px) {
+  .App-content {
+      flex-direction: column; /* Stack components vertically on small screens */
+      align-items: center;
+  }
+
+  .SearchResults,
+  .Playlist {
+      width: 90%; /* Take up most of the screen width */
+      margin-bottom: 20px; /* Add spacing between stacked components */
+  }
+}
+
+
+
+/* Track Styling */
+.Track {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fafbfc; /* Light background */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Track h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.Track p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.Track button {
+  padding: 6px 12px;
+  background-color: #a1c4fd; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Track button:hover {
+  background-color: #91bdfd; /* Slightly darker blue on hover */
+}
+
+/* Playlist Input */
+.Playlist input {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Search Bar */
+.SearchBar {
+  display: flex;
+  gap: 10px;
+  margin: 0 auto; /* Center the search bar horizontally */
+  width: 100%; /* Take the full width of the container */
+  max-width: 500px; /* Limit its maximum width */
+}
+
+.SearchBar input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.SearchBar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.SearchBar button:hover {
+  background-color: #21a1f1;
+}
