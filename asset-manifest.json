@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Jamming-App/static/css/main.2672f8b6.css",
-    "main.js": "/Jamming-App/static/js/main.76e781c3.js",
+    "main.js": "/Jamming-App/static/js/main.ce1747ee.js",
     "index.html": "/Jamming-App/index.html",
     "main.2672f8b6.css.map": "/Jamming-App/static/css/main.2672f8b6.css.map",
-    "main.76e781c3.js.map": "/Jamming-App/static/js/main.76e781c3.js.map"
+    "main.ce1747ee.js.map": "/Jamming-App/static/js/main.ce1747ee.js.map"
   },
   "entrypoints": [
     "static/css/main.2672f8b6.css",
-    "static/js/main.76e781c3.js"
+    "static/js/main.ce1747ee.js"
   ]
 }
