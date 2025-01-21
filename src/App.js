@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Spotify from "./components/Spotify"; // Import Spotify module
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 
+function CallbackHandler() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Handle the callback from Spotify
+    Spotify.getAccessToken();
+    navigate("/"); // Redirect to the home page
+  }, [navigate]);
+
+  return <div>Loading...</div>; // Optional: Show a loading message while processing the token
+}
+
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
-
-  Spotify.getAccessToken(); // Ensure access token is fetched
 
   // Search Spotify and update searchResults
   const searchSpotify = (term) => {
@@ -44,14 +55,9 @@ function App() {
     }
 
     try {
-      // Fetch user ID and save the playlist
       const userId = await Spotify.getUserId();
-      console.log("User ID fetched successfully:", userId);
-
       const playlistId = await Spotify.createPlaylist(userId, playlistName, trackUris);
-      console.log(`Playlist "${playlistName}" created with ID: ${playlistId}`);
 
-      // Reset playlist state after saving
       setPlaylistName("New Playlist");
       setPlaylistTracks([]);
     } catch (error) {
@@ -60,22 +66,32 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Jammming App</h1>
-      </header>
-      <div className="App-content">
-        <SearchBar onSearch={searchSpotify} />
-        <SearchResults searchResults={searchResults} onAdd={addTrack} />
-        <Playlist
-          playlistName={playlistName}
-          onNameChange={updatePlaylistName}
-          playlistTracks={playlistTracks}
-          onRemove={removeTrack}
-          onSave={savePlaylist}
-        />
+    <Router basename="/Jamming-App">
+      <div className="App">
+        <header className="App-header">
+          <h1>Jammming App</h1>
+        </header>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="App-content">
+                <SearchBar onSearch={searchSpotify} />
+                <SearchResults searchResults={searchResults} onAdd={addTrack} />
+                <Playlist
+                  playlistName={playlistName}
+                  onNameChange={updatePlaylistName}
+                  playlistTracks={playlistTracks}
+                  onRemove={removeTrack}
+                  onSave={savePlaylist}
+                />
+              </div>
+            }
+          />
+          <Route path="/callback" element={<CallbackHandler />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 

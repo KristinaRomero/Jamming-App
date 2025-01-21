@@ -1,33 +1,38 @@
 const clientId = "edd375f180f04080aac77d279a03169a"; // Replace with your actual Client ID
-const redirectUri = "https://KristinaRomero.github.io/Jamming-App/callback"; // Update to GitHub Pages URL
+const redirectUri = "https://KristinaRomero.github.io/Jamming-App/callback"; // Update the redirect URI
 let accessToken;
 
-
 const Spotify = {
-    getAccessToken() {
-      if (accessToken) {
-        return accessToken;
-      }
-  
-      // Check for access token and expiration in the URL
-      const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
-      const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
-  
-      if (accessTokenMatch && expiresInMatch) {
-        accessToken = accessTokenMatch[1];
-        const expiresIn = Number(expiresInMatch[1]);
-  
-        // Clear the access token after it expires
-        window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
-        window.history.pushState("Access Token", null, "/Jamming-App/"); // Ensure we redirect back to the app's root
-  
-        return accessToken;
-      } else {
-        // Redirect to Spotify authorization
-        const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
-        window.location = authUrl;
-      }
-    },
+  getAccessToken() {
+    console.log("Checking for access token...");
+    if (accessToken) {
+      console.log("Access token already exists:", accessToken);
+      return accessToken;
+    }
+
+    // Check if the access token exists in the URL
+    const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
+    const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
+
+    if (accessTokenMatch && expiresInMatch) {
+      console.log("Access token match found.");
+      accessToken = accessTokenMatch[1];
+      const expiresIn = Number(expiresInMatch[1]);
+
+      // Clear the access token after it expires
+      window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
+
+      // Remove the access token parameters from the URL
+      window.history.replaceState("Access Token", null, "/Jamming-App/");
+
+      return accessToken;
+    } else {
+      console.log("Redirecting to Spotify authorization...");
+      // Redirect to Spotify authorization
+      const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+      window.location = authUrl;
+    }
+  },
 
   search(term) {
     const accessToken = Spotify.getAccessToken();
@@ -56,7 +61,6 @@ const Spotify = {
       });
   },
 
-  // Fetch the user's Spotify ID
   async getUserId() {
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
